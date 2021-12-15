@@ -370,8 +370,92 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            Console.WriteLine("Please enter a string perhaps with different kinds of paranthesis");
+
+            string? inputString = Console.ReadLine();
+            
+            Stack<char> bracketStack = new Stack<char>();
+
+            if (inputString is null)
+                Console.WriteLine("Invalid string. It should have atleast one character");
+            else if (Utils.IsEmptyString(inputString))
+                Console.WriteLine("Invalid string. It should have atleast one character");
+            else
+            {
+                foreach (var character in inputString)
+                {
+                    if (isSomeOpeningBrackets(character))
+                        bracketStack.Push(character);
+                    else if (isSomeClosingBrackets(character))
+                    {
+                        char poppedBracket = bracketStack.Pop();
+                        if (matchClosingBracket(character, poppedBracket) is true)
+                            continue;
+                        else
+                        {
+                            Console.WriteLine("Unbalanced brackets!");
+                            return;
+                        }
+                    }
+                }
+
+                if (bracketStack.Count > 0)
+                    Console.WriteLine("Unbalanced brackets!");
+                else
+                    Console.WriteLine("Balanced brackets!");
+            }
+        
         }
 
+        private static bool isSomeClosingBrackets(char character)
+        {
+            if (character is ')')
+                return true;
+            else if (character is ']')
+                return true;
+            else if (character is '}')
+                return true;
+            else
+                return false;
+        }
+
+        private static bool matchClosingBracket(char character, char v)
+        {
+            switch (character)
+            {
+                case ')':
+                    if (v == '(')
+                        return true;
+
+                    break;
+
+                case ']':
+                    if (v == '[')
+                        return true;
+
+                    break;
+
+                case '}':
+                    if (v == '{')
+                        return true;
+
+                    break;
+            }
+
+            return false;
+        }
+
+        private static bool isSomeOpeningBrackets(char character)
+        {
+            if (character is '(')
+                return true;
+            else if (character is '[')
+                return true;
+            else if (character is '{')
+                return true;
+            else
+                return false;
+        }
     }
 }
 

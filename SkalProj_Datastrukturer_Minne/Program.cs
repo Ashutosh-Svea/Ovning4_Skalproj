@@ -161,6 +161,74 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+
+            Queue<string> queue = new ();
+
+            
+
+            do
+            {
+                Console.WriteLine("Enter +name to add name to ICA Checkout Queue.");
+                Console.WriteLine("Enter - to expedite one person.");
+                Console.WriteLine("Enter p to print the queue.");
+                Console.WriteLine("Enter 0 to exit to main menu.");
+
+                string? input = Console.ReadLine();
+                string? value = "";
+
+                if (Utils.IsStringAtleastGivenCharacters(input, 1) is false)
+                {
+                    Console.WriteLine("Please enter valid choice");
+                    continue;
+                }
+                if (input is null)
+                {
+                    Console.WriteLine("Please enter valid choice");
+                    continue;
+
+                }
+
+                switch (input[0])
+                {
+                    case '+':
+
+                        if (Utils.IsStringAtleastGivenCharacters(input, 2))
+                        {
+                            value = input?.Substring(1);
+                            //Console.WriteLine($"Add to list {value}");
+                            if (value is not null)
+                                queue.Enqueue(value);
+                        }
+                        else
+                            Console.WriteLine("Please enter some name to add to the ICA Checkout queue");
+                        break;
+
+                    case '-':
+                        string name;
+                        if (queue.Count > 0)
+                        {
+                            name = queue.Dequeue();
+                            Console.WriteLine($"{name} is leaving the queue and is expediated now.");
+                        }
+                        else
+                            Console.WriteLine("Nobody in the queue.");
+                        break;
+
+                    case 'p':
+                        foreach (var item in queue)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        //Console.WriteLine("Print list");
+                        break;
+                    case '0':
+                        return;
+                    default:
+                        Console.WriteLine("Please enter valid input");
+                        break;
+                }
+            } while (true);
         }
 
         /// <summary>

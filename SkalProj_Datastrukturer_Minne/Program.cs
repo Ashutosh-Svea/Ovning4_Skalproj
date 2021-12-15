@@ -67,7 +67,34 @@ namespace SkalProj_Datastrukturer_Minne
 
         private static void TryFibonacci()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Please enter a number");
+
+            int n;
+
+            if (!int.TryParse(Console.ReadLine(), out n))
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else if (n < 0)
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else
+            {
+                int output = Fibonacci(n);
+                Console.WriteLine($" Fibonacci is : { output }");
+
+            }
+        }
+
+        private static int Fibonacci (int n)
+        {
+            if (n == 0) 
+                return 0;    
+            if (n == 1) 
+                return 1; 
+
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
         }
 
         private static void TryRecursiveEven()

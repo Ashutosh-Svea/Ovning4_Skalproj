@@ -172,6 +172,7 @@ namespace SkalProj_Datastrukturer_Minne
                 Console.WriteLine("Enter +name to add name to ICA Checkout Queue.");
                 Console.WriteLine("Enter - to expedite one person.");
                 Console.WriteLine("Enter p to print the queue.");
+                Console.WriteLine("Enter t to simulate the ICA queue as given in the exercise.");
                 Console.WriteLine("Enter 0 to exit to main menu.");
 
                 string? input = Console.ReadLine();
@@ -222,6 +223,10 @@ namespace SkalProj_Datastrukturer_Minne
                         }
                         //Console.WriteLine("Print list");
                         break;
+                    case 't':
+                        testQueue();
+                        break;
+
                     case '0':
                         return;
                     default:
@@ -229,6 +234,25 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             } while (true);
+        }
+
+
+        static void testQueue()
+        {
+            Queue<string> icaQueue = new Queue<string>();
+
+            icaQueue.Enqueue("Kalle");
+            icaQueue.Enqueue("Greta");
+            icaQueue.Dequeue();
+            icaQueue.Enqueue("Stina");
+            icaQueue.Dequeue();
+            icaQueue.Enqueue("Olle");
+
+            foreach (var item in icaQueue)
+                Console.WriteLine(item);
+            {
+
+            }
         }
 
         /// <summary>

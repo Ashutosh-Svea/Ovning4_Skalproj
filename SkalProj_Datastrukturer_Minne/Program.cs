@@ -18,6 +18,8 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
+                    + "\n5. Find Recursive Even"
+                    + "\n6. Fibonacci Sequence"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -43,6 +45,12 @@ namespace SkalProj_Datastrukturer_Minne
                     case '4':
                         CheckParanthesis();
                         break;
+                    case '5':
+                        TryRecursiveEven();
+                        break;
+                    case '6':
+                        TryFibonacci();
+                        break;
                     /*
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
@@ -55,6 +63,41 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+        }
+
+        private static void TryFibonacci()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void TryRecursiveEven()
+        {
+            Console.WriteLine("To find its recursive even, please enter a number");
+            int n;
+
+            if (!int.TryParse(Console.ReadLine(), out n))
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else if (n < 0)
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else
+            {
+                int output = RecursiveEven(n);
+
+                Console.WriteLine($" Recursive even is : { output }");
+            }
+
+        }
+
+        public static int RecursiveEven(int n)
+        {
+            if (n == 0)
+                return 0;
+            else
+                return (RecursiveEven(n - 1) + 2);
         }
 
         /// <summary>

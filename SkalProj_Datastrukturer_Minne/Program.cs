@@ -23,8 +23,6 @@ namespace SkalProj_Datastrukturer_Minne
                 try
                 {
                     input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
-
-
                 }
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {
@@ -74,12 +72,63 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            List<string> theList = new List<string>();
 
-            //switch(nav){...}
+            do
+            {
+                Console.WriteLine("Enter +input to add input to list.");
+                Console.WriteLine("Enter -input to remove input to list.");
+                Console.WriteLine("Enter p to print the list.");
+                Console.WriteLine("Enter 0 to exit to main menu.");
+
+                string? input = Console.ReadLine();
+                string? value = "";
+
+                if (Utils.IsStringAtleastGivenCharacters(input, 1) is false)
+                {
+                    Console.WriteLine("Please enter valid choice");
+                    continue;
+                }
+                if (input is null)
+                {
+                    Console.WriteLine("Please enter valid choice");
+                    continue;
+
+                }
+
+                switch (input[0])
+                {
+                    case '+':
+
+                        if (Utils.IsStringAtleastGivenCharacters(input, 2))
+                        {
+                            value = input?.Substring(1);
+                            Console.WriteLine($"Add to list {value}");
+                        }
+                        else
+                            Console.WriteLine("Please enter some string to add to the list");
+                        break;
+
+                    case '-':
+                        if (Utils.IsStringAtleastGivenCharacters(input, 2))
+                        {
+                            value = input?.Substring(1);
+                            Console.WriteLine($"Remove from list {value}");
+                        }
+                        else
+                            Console.WriteLine("Please enter some string to remove from the list");
+
+                        break;
+                    case 'p':
+                        Console.WriteLine("Print list");
+                        break;
+                    case '0':
+                        return;
+                    default:
+                        Console.WriteLine("Please enter valid input");
+                        break;
+                }
+            } while (true);
         }
 
         /// <summary>

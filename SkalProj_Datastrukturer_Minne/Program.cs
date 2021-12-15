@@ -59,6 +59,10 @@ namespace SkalProj_Datastrukturer_Minne
 
         /// <summary>
         /// Examines the datastructure List
+        /// Q1. List capacity increases when it is needed. Since cost of copying elements is hight, increase of size is done by doubling when needed.Therefore, it is not increased with each element add because of added cost of copying. 
+        /// List size does not decrease on its own when the elements are taken out. One must call trim methods to resize the list
+        /// It is advantageous to use array over list when we know how many elements will be there beforehand. Fixed size.  
+        /// 
         /// </summary>
         static void ExamineList()
         {
@@ -103,7 +107,12 @@ namespace SkalProj_Datastrukturer_Minne
                         if (Utils.IsStringAtleastGivenCharacters(input, 2))
                         {
                             value = input?.Substring(1);
-                            Console.WriteLine($"Add to list {value}");
+                            //Console.WriteLine($"Add to list {value}");
+                            Console.WriteLine("List capacity before adding" + theList.Capacity);
+                            if (value is not null)
+                                theList.Add(value);
+                            Console.WriteLine("List capacity after adding" + theList.Capacity);
+
                         }
                         else
                             Console.WriteLine("Please enter some string to add to the list");
@@ -113,14 +122,25 @@ namespace SkalProj_Datastrukturer_Minne
                         if (Utils.IsStringAtleastGivenCharacters(input, 2))
                         {
                             value = input?.Substring(1);
-                            Console.WriteLine($"Remove from list {value}");
+                            //Console.WriteLine($"Remove from list {value}");
+                            Console.WriteLine("List capacity before removing" + theList.Capacity);
+
+                            if (value is not null)
+                                theList.Remove(value);
+
+                            Console.WriteLine("List capacity after removing" + theList.Capacity);
+
                         }
                         else
                             Console.WriteLine("Please enter some string to remove from the list");
 
                         break;
                     case 'p':
-                        Console.WriteLine("Print list");
+                        foreach (var item in theList)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        //Console.WriteLine("Print list");
                         break;
                     case '0':
                         return;

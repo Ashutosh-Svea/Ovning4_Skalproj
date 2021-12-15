@@ -23,6 +23,8 @@ namespace SkalProj_Datastrukturer_Minne
                 try
                 {
                     input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
+
+
                 }
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {

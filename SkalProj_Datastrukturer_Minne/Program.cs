@@ -257,14 +257,109 @@ namespace SkalProj_Datastrukturer_Minne
 
         /// <summary>
         /// Examines the datastructure Stack
+        /// using stack for ICA Queue means that everytime one person who came first leaves, the stack has to be emptied and recreated since the first person
+        /// is at the bottom of stack. 
         /// </summary>
+        /// 
         static void ExamineStack()
         {
+            Stack<string> stringStack = new Stack<string>();
+
             /*
              * Loop this method until the user inputs something to exit to main menue.
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            do
+            {
+                Console.WriteLine("Enter +name to add name to stack.");
+                Console.WriteLine("Enter - to pop the top name.");
+                Console.WriteLine("Enter p to print the stack.");
+                Console.WriteLine("Enter r to reverse a string using stack");
+                Console.WriteLine("Enter 0 to exit to main menu.");
+
+                string? input = Console.ReadLine();
+                string? value = "";
+
+                if (Utils.IsStringAtleastGivenCharacters(input, 1) is false)
+                {
+                    Console.WriteLine("Please enter valid choice");
+                    continue;
+                }
+                if (input is null)
+                {
+                    Console.WriteLine("Please enter valid choice");
+                    continue;
+
+                }
+
+                switch (input[0])
+                {
+                    case '+':
+
+                        if (Utils.IsStringAtleastGivenCharacters(input, 2))
+                        {
+                            value = input?.Substring(1);
+                            //Console.WriteLine($"Add to list {value}");
+                            if (value is not null)
+                                stringStack.Push(value);
+
+                        }
+                        else
+                            Console.WriteLine("Please enter some string with at least one character");
+                        break;
+
+                    case '-':
+                        string name;
+                        if (stringStack.Count > 0)
+                        {
+                            name = stringStack.Pop();
+                            Console.WriteLine($"{name} is popped from the stack.");
+                        }
+                        else
+                            Console.WriteLine("No string in the stack");
+                        break;
+
+                    case 'p':
+                        foreach (var item in stringStack)
+                        {
+                            Console.WriteLine(item);
+                        }
+
+                        //Console.WriteLine("Print list");
+                        break;
+                    case 'r':
+                        Console.WriteLine("Enter a string to be revered");
+                        string? inputString = Console.ReadLine();
+                        if (Utils.IsEmptyString(inputString))
+                            Console.WriteLine("Invalid input. String must be atleast one character");
+                        else if (inputString is not null)
+                        {
+                            Stack<char> charStack = new Stack<char>();
+                            foreach (var character in inputString)
+                            {
+                                charStack.Push(character);
+                            }
+
+                            String reverseString = "";
+
+                            foreach (var item in charStack)
+                            {
+                                reverseString += item;
+                            }
+
+                            Console.WriteLine($"Reversed string is {reverseString}");
+                        }
+                        break;
+
+                    case '0':
+                        return;
+                    default:
+                        Console.WriteLine("Please enter valid input");
+                        break;
+                }
+            } while (true);
+
         }
 
         static void CheckParanthesis()

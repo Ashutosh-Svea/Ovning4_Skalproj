@@ -1,4 +1,51 @@
-﻿using System;
+﻿/*
+ * 1.Hur fungerar stacken​ ​​ och heapen​? Förklara gärna med exempel eller skiss på dess grundläggande funktion 
+A:  All function calls and its local variables are stored in stack. All reference type and dynamacially allocated variables and objects are stored on heap. 
+
+Function calling functions, for example, main function calling another function will be stored in stack. Since stack is LIFO, return will be in order, so once another function returns, main function resumes.
+
+Heap are stored as where dynamic memory slots which are linked as tree data structure. So access is in fixed time irrespective of size of heap. 
+ 
+
+2.       Vad är Value​ ​Types​ ​​repsektive Reference​ ​ Types​ ​​ och vad skiljer dem åt? 
+Value types are created by copy . So copying into another variable is copy by value. 
+While reference types are created by pointing to same memory location. When copying into another variable is copy by reference where no new variable is created rather points to same memory location.
+
+3.  Följande metoder (se​ ​ bild​ ​ nedan​) genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?   
+First is value type so value is copied while the variable x and y points to two different memory locations on stack.
+In second, it is reference type so copying is merely changing the pointer to point to the same memory location. 
+
+
+
+
+2.  När ökar listans kapacitet? (Alltså den underliggande arrayens storlek) 
+Capacity is not increased by adding a variable, rather it is doubled when more storage is needed. 
+
+3. Med hur mycket ökar kapaciteten? 
+It is doubled when increased.
+
+4. Varför ökar inte listans kapacitet i samma takt som element läggs till? 
+To save runtime as increasing list size might involves copying the elements to new locations to fit the larger size.
+
+5. Minskar kapaciteten när element tas bort ur listan? 
+No. Capacity is not dynamically decreesed during its lifetime unless one calls trim() function.
+
+6. När är det då fördelaktigt att använda en egendefinierad array​ ​​ istället för en lista? 
+When the size is predetermined then array makes sense. Internally list also uses array but does more job around the array for ease of use. 
+
+
+ 1. Varför är det inte så smart att använda en stack​ ​​ i det här fallet? 
+ For implementing an ICA queue, the first person going out of queue means popping all the elements of stack and reputting them back without the first. Stack is LIFO and queue is FIFO. So for ICAqueue stack is very costly data structure.
+
+
+Utgå ifrån era nyvunna kunskaper om iteration, rekursion och minneshantering. Vilken av ovanstående funktioner är mest minnesvänlig och varför?   
+Recursion takes more memory due to putting last function call on stack at every step of recursion. This increaes execution time.
+
+
+*/
+
+
+using System;
 
 namespace SkalProj_Datastrukturer_Minne
 {

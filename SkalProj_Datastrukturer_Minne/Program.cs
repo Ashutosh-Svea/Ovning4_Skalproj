@@ -19,11 +19,15 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
                     + "\n5. Find Recursive Even"
-                    + "\n6. Fibonacci Sequence"
+                    + "\n6. Fibonacci Number"
+                    + "\n7. Find Iterative Even"
+                    + "\n8. Iterative Fibonacci Number"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
                 {
+
+
                     input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
                 }
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
@@ -51,6 +55,13 @@ namespace SkalProj_Datastrukturer_Minne
                     case '6':
                         TryFibonacci();
                         break;
+                    case '7':
+                        TryIterativeEven();
+                        break;
+                    case '8':
+                        TryIterativeFibonacci();
+                        break;
+
                     /*
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
@@ -82,7 +93,7 @@ namespace SkalProj_Datastrukturer_Minne
             else
             {
                 int output = Fibonacci(n);
-                Console.WriteLine($" Fibonacci is : { output }");
+                Console.WriteLine($"{n} Fibonacci Number is: {output}");
 
             }
         }
@@ -114,7 +125,7 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 int output = RecursiveEven(n);
 
-                Console.WriteLine($" Recursive even is : { output }");
+                Console.WriteLine($"Recursive even is: {output}");
             }
 
         }
@@ -125,6 +136,77 @@ namespace SkalProj_Datastrukturer_Minne
                 return 0;
             else
                 return (RecursiveEven(n - 1) + 2);
+        }
+
+        private static void TryIterativeFibonacci()
+        {
+            Console.WriteLine("Please enter a number");
+
+            int n;
+
+            if (!int.TryParse(Console.ReadLine(), out n))
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else if (n < 0)
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else
+            {
+                int output = IterativeFibonacci(n);
+                Console.WriteLine($"{n} Fibonacci Number is: {output}");
+
+            }
+        }
+
+        private static int IterativeFibonacci(int n)
+        {
+            int result = 0;
+            int previous = 1;
+
+            for (int i = 0; i < n; i++)
+            {
+                int temp = result;
+                result = previous;
+                previous = temp + previous;
+            }
+
+            return result;
+        }
+
+        private static void TryIterativeEven()
+        {
+            Console.WriteLine("To find the iterative even, please enter a number");
+            int n;
+
+            if (!int.TryParse(Console.ReadLine(), out n))
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else if (n < 0)
+            {
+                Console.WriteLine("Invalid number entered. Try again.");
+            }
+            else
+            {
+                int output = IterativeEven(n);
+
+                Console.WriteLine($"Iterative even is: {output}");
+            }
+
+        }
+
+        public static int IterativeEven(int n)
+        {
+            if (n == 0)
+                return 0;
+
+            int result = 0;
+            for (int i = 0; i < n; i++)
+                result += 2;
+
+            return result;
         }
 
         /// <summary>
